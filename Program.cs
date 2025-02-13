@@ -5,14 +5,36 @@ class Program
     static void Main()
     {
         //создание обьекта -Персона
-        Person person = new Person();
-        Console.WriteLine("Введите ваше имя; ");
-        string name = Console.ReadLine();
-        //установка имени
-        person.setName(name);
-        Console.WriteLine($"ваше имя; {person.getName()}");
+        Person person;
+        bool inCorectGender = true;
+        while(inCorectGender)
+        {
+        Console.Write("Введите ваш пол(м/ж): ");
+        string gender = Console.ReadLine().Trim().ToLower();
+        switch(gender)
+        {
+            case "м": 
+            person = new MenPerson();
+            inCorectGender = false;
+            break;
+             case "ж": 
+            person = new GirlPerson();
+             inCorectGender = false;
+            break;
+            default:
+            Console.WriteLine("недопустимое значение- м/ж");
+            break;
+        }
 
-//установка возроста
+
+
+        Console.WriteLine("Введите ваше имя; ");
+        
+        //установка имени
+        person.setName(Console.ReadLine());
+        Console.WriteLine($"ваше имя; {person.getName(false)}");
+
+        //установка возроста
         Console.WriteLine("Введите ваше возраст; ");
         
         while(!int.TryParse( Console.ReadLine(), out person.Age) || person.Age < 0 || person.Age > 200)
@@ -20,15 +42,14 @@ class Program
             Console.Write("некоректный ввод. Введите число больше либо 0 ");
             Console.Write("Введите ваше возраст; ");
         }
-        Console.Write($"ваше возраст; {person.Age}");
+        Console.WriteLine($"ваше возраст; {person.Age}");
+        
+        //Установка любимой вещи
+        person.askPreferense();
 
-        Console.Write("Введите ваш пол(м/ж): ");
-        string gender = Console.ReadLine();
-        string Gender = Console.ReadLine().Trim().ToLower();
-        //установка пола
-        person.setGender(gender);
- //вывод сводной информации
-        person.displayInfo();
+        //вывод сводной информации
+    
+        Console.WriteLine(person.displayInfo());
         Console.WriteLine("Нажмите любую клавишу для выхода");
         Console.ReadKey();
     }
