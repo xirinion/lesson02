@@ -4,27 +4,29 @@ class Program
 {
     static void Main()
     {
+        //Инициализация
+        PersonOutputHandler outputHandler = new PersonOutputHandler();
+
         //создание обьекта -Персона
-        Person person;
-        bool inCorectGender = true;
-        while(inCorectGender)
+        Person person = null; //говорит выделить место под персону(null - ни что)
+        do
         {
-        Console.Write("Введите ваш пол(м/ж): ");
-        string gender = Console.ReadLine().Trim().ToLower();
-        switch(gender)
-        {
-            case "м": 
-            person = new MenPerson();
-            inCorectGender = false;
-            break;
-             case "ж": 
-            person = new GirlPerson();
-             inCorectGender = false;
-            break;
-            default:
-            Console.WriteLine("недопустимое значение- м/ж");
-            break;
-        }
+        
+            Console.Write("Введите ваш пол(м/ж): ");
+            string gender = Console.ReadLine().Trim().ToLower();
+            switch(gender)
+            {
+                case "м": 
+                person = new MenPerson();
+                break;
+                case "ж": 
+                person = new GirlPerson();
+                break;
+                default:
+                Console.WriteLine("недопустимое значение- м/ж");
+                break;
+            }
+        }        while(person == null);
 
 
 
@@ -47,9 +49,40 @@ class Program
         //Установка любимой вещи
         person.askPreferense();
 
+        // наличие детей
+
+        string hasChildren;
+        ChildPerson Child = null;
+        do
+        {
+        
+            Console.Write( "есть ли у вас ребенок (да/нет)?");
+            hasChildren = Console.ReadLine().Trim().ToLower();
+            switch(hasChildren)
+            {
+                case "да": 
+                    Child = new ChildPerson();
+                    Child.askName();
+                    Child.askAge();
+                    Child.askPreferense();
+                    break;
+                case "нет": 
+                    break;
+                default:
+                    Console.WriteLine("недопустимое значение - да/нет");
+                    break;
+            }
+        }        while(!(hasChildren == "да" || hasChildren == "нет"));
+
+
         //вывод сводной информации
     
-        Console.WriteLine(person.displayInfo());
+        //Console.WriteLine(person.displayInfo());
+        outputHandler.displayInfoConsole(person);
+        if(Child != null)
+        {
+            outputHandler.displayInfoConsole(Child);
+        }
         Console.WriteLine("Нажмите любую клавишу для выхода");
         Console.ReadKey();
     }

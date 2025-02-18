@@ -3,6 +3,10 @@ abstract class Person
     public int Age;
     protected string Name;
     protected string PrefferedThing;
+    public string getPrefferedThing()
+    {
+        return PrefferedThing;
+    }
 
     abstract public string getName(bool isGreating);
 
