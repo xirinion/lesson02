@@ -11,7 +11,7 @@ class PersonInputHandler
 
         string personName = askName();
         person.setName(personName);
-        person.askAge(personAge)
+        person.Age = askAge;
 
         return person;
         
@@ -73,9 +73,9 @@ class PersonInputHandler
             {
              string stAge = Console.ReadLine();
              emptyStringValidator(stAge);
-             int age = int.Parse(stAge);
-             positivIntValidator(age);
-             return age;
+             int Age = int.Parse(stAge);
+             positivIntValidator(Age);
+             return Age;
 
             }
              catch(ArgumentException e)
