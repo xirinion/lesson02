@@ -11,8 +11,8 @@ abstract class Person
     public int Age;
     protected string Name;
     protected GenderType Gender;
-
     protected string PrefferedThing;
+    protected ChildPerson Child = null;
     public string getPrefferedThing()
     {
         return PrefferedThing;
@@ -20,10 +20,7 @@ abstract class Person
 
     abstract public string getName(bool isGreating);
     public GenderType getGender() => Gender;
-
-    abstract public void askPreferense();
-
-        
+      
     public void setName(string name)
     {
         Name = name;
@@ -31,12 +28,11 @@ abstract class Person
         public void setGender(GenderType g)
     {
         Gender = g;
-    }     
-    public string displayInfo()
-
-    {
-
-        return $"Приятно познакомится {getName(true)}! Ваш возраст - {Age}. {PrefferedThing} ";
-     
     }
+    public void setChild(ChildPerson ch)
+    {
+        Child = ch;
+    }
+    public ChildPerson getChild() => Child;
+
 }

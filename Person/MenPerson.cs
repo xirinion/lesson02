@@ -5,12 +5,4 @@ class MenPerson : Person
     {
       return isGreating ? $"Гн. {Name}": Name;
     }
-        public override void askPreferense()
-    {
-        string PrefferedThingTitle = "Ваша любимая машина: ";
-        Console.Write(PrefferedThingTitle);
-        string PrefferedThingAswer = Console.ReadLine();
-        PrefferedThing = $"{PrefferedThingTitle} {PrefferedThingAswer}";
-    }
-
 }

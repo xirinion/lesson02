@@ -20,8 +20,12 @@ static class PersonFactoring
             }
             return person;
     }
-    //     public static ChildPerson CreateChildPerson()
-    // {
-
-    // }
+    public static ChildPerson CreateChildPerson(GenderType gender, string name, int age)
+    {
+        ChildPerson child = new ChildPerson();
+        child.setGender(gender);
+        child.setName(name);
+        child.Age = age;
+        return child;
+    }
 }

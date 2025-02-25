@@ -1,4 +1,5 @@
 using lesson02.Person.utils;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 
 class PersonInputHandler
@@ -13,15 +14,44 @@ class PersonInputHandler
         string personName = askName();
         person.setName(personName);
         person.Age = askAge();
+        ChildPerson child = askAboutChild();
+        person.setChild(child);
+        return person;
 
         return person;
         
+    }
+    private ChildPerson askAboutChild()
+    {
+        // наличие детей
+
+        string hasChildren;
+        do
+        {
+            Console.Write("есть ли у вас ребенок (да/нет)?");
+            hasChildren = Console.ReadLine().Trim().ToLower();
+            switch (hasChildren)
+            {
+                case "да":
+                    GenderType gender = askGenderConsole();
+                    string name = askName();
+                    int age = askAge();
+                    ChildPerson child = PersonFactoring.CreateChildPerson(gender, name, age);
+                    return child;
+                case "нет":
+                    break;
+                default:
+                    Console.WriteLine("недопустимое значение - да/нет");
+                    break;
+            }
+        } while (!(hasChildren == "да" || hasChildren == "нет"));
+        return null;
     }
     private GenderType askGenderConsole()
     {
         while(true)
         {
-            Console.Write("Введите ваш пол(м/ж): ");
+            Console.Write("Введите пол(м/ж): ");
             //поймать ошибку
             try 
             {
@@ -57,7 +87,7 @@ class PersonInputHandler
     {
         while(true)
         {
-            Console.WriteLine("Введите ваше имя; ");
+            Console.WriteLine("Введите имя; ");
             //поймать ошибку
             try 
             {
@@ -75,7 +105,7 @@ class PersonInputHandler
     }
     private int askAge()
     {
-        Console.WriteLine("Введите ваше возраст; ");
+        Console.WriteLine("Введите возраст; ");
 
          while(true)
          {
