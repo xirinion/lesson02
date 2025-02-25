@@ -1,8 +1,16 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using lesson02.Person.utils;
+
+
 abstract class Person
 {
     public int Age;
     protected string Name;
-    protected string Gender;
+    protected GenderType Gender;
 
     protected string PrefferedThing;
     public string getPrefferedThing()
@@ -11,7 +19,7 @@ abstract class Person
     }
 
     abstract public string getName(bool isGreating);
-    public string getGender() => Gender;
+    public GenderType getGender() => Gender;
 
     abstract public void askPreferense();
 
@@ -20,7 +28,7 @@ abstract class Person
     {
         Name = name;
     } 
-        public void setGender(string g)
+        public void setGender(GenderType g)
     {
         Gender = g;
     }     

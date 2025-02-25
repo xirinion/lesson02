@@ -1,15 +1,17 @@
+using lesson02.Person.utils;
+
 static class PersonFactoring
 {
     //метод будет возращать людей
-    public static Person CreatePerson(string gender)
+    public static Person CreatePerson(GenderType gender)
     {
         Person person = null;
         switch(gender)
             {
-                case "м": 
+                case GenderType.Male: 
                 person = new MenPerson();
                 break;
-                case "ж": 
+                case GenderType.Female: 
                 person = new GirlPerson();
                 break;
                 default:

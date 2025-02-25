@@ -1,3 +1,4 @@
+using lesson02.Person.utils;
 using System.Runtime.CompilerServices;
 
 class PersonInputHandler
@@ -6,17 +7,17 @@ class PersonInputHandler
     private Person person;
     public Person GetPersonDetails()
     {
-        string gender = askGenderConsole();
-        person  = PersonFactoring.CreatePerson(gender);
+        GenderType gender = askGenderConsole();
+        person = PersonFactoring.CreatePerson(gender);
 
         string personName = askName();
         person.setName(personName);
-        person.Age = askAge;
+        person.Age = askAge();
 
         return person;
         
     }
-    private string askGenderConsole()
+    private GenderType askGenderConsole()
     {
         while(true)
         {
@@ -26,8 +27,18 @@ class PersonInputHandler
             {
                 string gender = Console.ReadLine().Trim().ToLower();
                 genderValidator(gender);
-                return gender;
-            }catch(ArgumentException e)
+                switch(gender)
+                {
+                    case "m":
+                        return GenderType.Male;
+                    case "f":
+                        return GenderType.Female;
+                    default:
+                        throw new ArgumentException("не удалось распознать пол");
+                }
+                
+            }
+            catch(ArgumentException e)
             {
                 Console.WriteLine(e.Message);
             }

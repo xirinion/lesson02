@@ -44,13 +44,13 @@ class Program
 
         //вывод сводной информации
     
-        Console.WriteLine(person.displayInfo());
+        //Console.WriteLine(person.displayInfo());
         outputHandler.displayInfoConsole(p);
         
-        if(Child != null)
-        {
-            outputHandler.displayInfoConsole(Child);
-        }
+       // if(Child != null)
+       // {
+       //     outputHandler.displayInfoConsole(Child);
+       // }
         Console.WriteLine("Нажмите любую клавишу для выхода");
         Console.ReadKey();
     }
